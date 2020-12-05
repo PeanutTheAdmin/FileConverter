@@ -1,3 +1,5 @@
 # Ignored Files
 /env/*
 /.vscode/*
+/.pdf/*
+/.jpg/*
