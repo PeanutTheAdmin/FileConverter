@@ -25,7 +25,7 @@ def convert_file(file, file_name, file_extension):
             page.save(filename=f"{file_name}{str(i)}.png")
             i +=1
 
-def main():
+def main(): #
     file, file_name, file_extension = get_file()
     convert_file(file, file_name, file_extension)
 
