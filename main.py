@@ -31,15 +31,13 @@ def check_file(options): # selects settings based on user choice
         exit()
 
 def convert_file(options, file_name, file_extension): # converts files to other formats
-    while True:
-        pdf = wi(filename=options.file, resolution=300)
-        pdfimage = pdf.convert(file_extension)
-        i=1
-        for img in pdfimage.sequence:
-            page = wi(image=img)
-            page.save(filename=f"{file_name}{str(i)}.{options.convert_type}")
-            i +=1
-        break
+    pdf = wi(filename=options.file, resolution=300)
+    pdfimage = pdf.convert(file_extension)
+    i=1
+    for img in pdfimage.sequence:
+        page = wi(image=img)
+        page.save(filename=f"{file_name}{str(i)}.{options.convert_type}")
+        i +=1
 
 def main(): # Main Function
     options = get_arguments()
