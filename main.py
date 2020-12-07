@@ -39,6 +39,7 @@ def convert_file(options, file_name, file_extension): # converts files to other 
             page = wi(image=img)
             page.save(filename=f"{file_name}{str(i)}.{options.convert_type}")
             i +=1
+        break
 
 def main(): # Main Function
     options = get_arguments()
