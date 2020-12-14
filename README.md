@@ -2,4 +2,4 @@
 # FileConverter
 Converts files from one type to another. For example converting a pdf document to a jpg or png image.
 </br>
----- Requires ImageMagick to be installed on Windows before use! ---- https://imagemagick.org/script/download.php#windows
+---- Windows requires -> ImageMagick 7.0.10-45 Q16-HDRI (64-bit) (2020-11-30) <- and check the box when installing Select Additional Tasks [X](Install development headers and libraries for C and C++) ---- https://imagemagick.org/script/download.php#windows
