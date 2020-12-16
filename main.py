@@ -17,21 +17,24 @@ def get_arguments(): # gets arguments and files from user
     return options
 
 def check_file(options): # checks if file, and file type to be converted exsits
-    print(f"[+] Checking if {options.file} exsits.")
-    if path.exists(options.file) == True:
-        print(f"[+] File {options.file} found.")
-        file_name = options.file[:-4]
-        # if options.convert_type == "png" or "jpg":
-        try:
-            extension_list = {"png": "png", "jpg": "jpeg"}
-            file_extension = extension_list[options.convert_type]
-            return file_name, file_extension
-        except KeyError:
-            print(f"[-] File type {options.convert_type} to be converted to was not found. Please check the extension before trying again, (e.g. png or jpg).")
+    try:
+        print(f"[+] Checking if {options.file} exsits.")
+        if path.exists(options.file) == True:
+            print(f"[+] File {options.file} found.")
+            file_name = options.file[:-4]
+            # if options.convert_type == "png" or "jpg":
+            try:
+                extension_list = {"png": "png", "jpg": "jpeg"}
+                file_extension = extension_list[options.convert_type]
+                return file_name, file_extension
+            except KeyError:
+                print(f"[-] File type {options.convert_type} to be converted to was not found. Please check the extension before trying again, (e.g. png or jpg).")
+        else: 
+            print(f"[-] File {options.file} not found. Please check the name and extension before trying again. (e.g. sample.pdf).")
             exit()
-    else: 
-        print(f"[-] File {options.file} not found. Please check the name and extension before trying again. (e.g. sample.pdf).")
-        exit()
+    except Exception as msg:
+        report_issue(msg)
+
 
 def convert_file(options, file_name, file_extension): # converts files to other formats
     try:
@@ -44,9 +47,22 @@ def convert_file(options, file_name, file_extension): # converts files to other 
             page.save(filename=f"{file_name}{str(i)}.{options.convert_type}")
             i +=1
         print("[+] File was successfully converted.")
-    except:
-        print("[-] File was not successfully converted.")
-        exit()
+
+    except Exception as msg:
+        exception_ghostscript = 'FailedToExecuteCommand `"gswin64c.exe"'
+        exception_ghostscript_compare = str(msg)
+        if exception_ghostscript == exception_ghostscript_compare[:38]:
+            print("[-] File was not successfully converted.\n")
+            print("There is an issue with ghostscript. Reinstall or download latest version and try again.")
+            print("Visit: https://github.com/PeanutTheAdmin/FileConverter for install instructions.\n")
+        else:
+            print("[-] File was not successfully converted.")
+            report_issue(msg)
+
+def report_issue(msg):
+    print(f"[BUG] {msg}\n")
+    print("To report this issue go to: https://github.com/PeanutTheAdmin/FileConverter/issues")
+    print("When reporting this issue include the output after [BUG]\n")
 
 def main(): # Main Function
     options = get_arguments()
