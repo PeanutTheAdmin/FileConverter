@@ -23,7 +23,7 @@ def check_file(options): # checks if file, and file type to be converted exsits
             print(f"[+] File {options.file} found.")
             file_name = options.file[:-4]
             try:
-                extension_list = {"png": "png", "jpg": "jpeg", "gif": "gif", "tif": "tif", "bmp": "bmp", "eps": "eps"}
+                extension_list = {"pdf": "pdf", "png": "png", "jpg": "jpeg", "gif": "gif", "tif": "tif", "bmp": "bmp", "eps": "eps"}
                 file_extension = extension_list[options.convert_type]
                 return file_name, file_extension
             except KeyError:
