@@ -6,5 +6,5 @@ mccabe==0.6.1
 pylint==2.6.0
 six==1.15.0
 toml==0.10.2
-Wand==0.6.5
+Wand==0.6.6
 wrapt==1.12.1
