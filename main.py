@@ -8,7 +8,7 @@ import argparse
 def get_arguments(): # gets arguments and files from user
     parser = argparse.ArgumentParser()
     parser.add_argument("-f", "--file", dest="file", help="File to be converted, (e.g. sample.pdf, apple.png, baseball.jpg).")
-    parser.add_argument("-ct" , "--convert_type", dest="convert_type", help="New file type to be converted to, (e.g. png or jpg).")
+    parser.add_argument("-ct" , "--convert_type", dest="convert_type", help="New file type to be converted to, (e.g. pdf, png, jpg, gif, tif, bmp, eps).")
     (options) = parser.parse_args()
     if not options.file:
         parser.error("[-] Please specify a file, use --help for more info.")
